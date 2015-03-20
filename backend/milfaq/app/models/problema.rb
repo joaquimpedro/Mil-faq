@@ -1,2 +1,7 @@
 class Problema < ActiveRecord::Base
+	belongs_to :usuario
+	belongs_to :status
+	validates :descricao, :presence => {message: "Descrição é obrigatória"}
+	validates :usuario_id, :presence => {message: "Relator é obrigatório"}
+	validates :status_id, :presence => {message: "Status é obrigatório"}
 end
