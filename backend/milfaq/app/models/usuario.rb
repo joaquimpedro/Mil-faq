@@ -7,6 +7,6 @@ class Usuario < ActiveRecord::Base
 	validates :perfil_id, :presence => {message: "Perfil é obrigatório"}
 
 	def nome_completo
-		@nome + " " + @sobrenome 
+		self.nome + " " + self.sobrenome 
 	end
 end
