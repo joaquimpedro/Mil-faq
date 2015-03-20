@@ -9,4 +9,5 @@ class Usuario < ActiveRecord::Base
 	def nome_completo
 		self.nome + " " + self.sobrenome 
 	end
+
 end

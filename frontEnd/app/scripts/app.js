@@ -18,6 +18,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'usersFactory',
+    'perfisFactory',
   ])
 
 .config(function ($stateProvider,$urlRouterProvider) {

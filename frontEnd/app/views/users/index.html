@@ -14,14 +14,16 @@
                         <th>#</th>
                         <th>Nome</th>
                         <th>Email</th>
+                        <th>Perfil</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="user in users | filter:busca | orderBy:'id'">
                         <td>{{user.id}}</td>
-                        <td><i class="glyphicon glyphicon-user"></i> {{user.nome}}</td>
+                        <td><i class="glyphicon glyphicon-user"></i> {{user.nome_completo}}</td>
                         <td><i class="glyphicon glyphicon-envelope"></i> {{user.email}}</td>
+                        <td>{{user.perfil.descricao}}</td>
                         <td>
                             <a class="btn btn-sm btn-default" ui-sref="usersShow({id:user.id})"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a class="btn btn-sm btn-default" ui-sref="usersEdit({id:user.id})"><i class="glyphicon glyphicon-pencil"></i></a>

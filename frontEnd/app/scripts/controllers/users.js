@@ -12,6 +12,7 @@ angular.module('milfaqApp')
     
     $scope.index = function(){
       $scope.users = usersFactory.index();
+      console.log($scope.users);
     };
 
     $scope.destroy = function(user) {
@@ -35,11 +36,12 @@ angular.module('milfaqApp')
     $scope.user = usersFactory.show({id: $stateParams.id});
 }])
 
-.controller('UsersNewController', ['$scope', '$stateParams','$state', 'usersFactory', function($scope, $stateParams, $state ,usersFactory) {
+.controller('UsersNewController', ['$scope', '$stateParams','$state', 'usersFactory', 'perfisFactory', function($scope, $stateParams, $state ,usersFactory, perfisFactory) {
     
     $scope.users = {};
 
     $scope.save = function() {
+        $scope.users.perfil_id = $scope.users.perfil.id;
         usersFactory.create($scope.users).$promise.then(
         //sucess
         function( data ){
@@ -53,17 +55,22 @@ angular.module('milfaqApp')
       );
     };
 
+    $scope.load_perfis = function() {
+      $scope.perfis = perfisFactory.index();
+    };
+
+    $scope.load_perfis();
+
 }])
 
-.controller('UsersEditController', ['$scope', '$stateParams','$state', 'usersFactory', function($scope, $stateParams, $state, usersFactory) {
+.controller('UsersEditController', ['$scope', '$stateParams','$state', 'usersFactory', 'perfisFactory', function($scope, $stateParams, $state, usersFactory, perfisFactory) {
     
     $scope.users = {};
 
     $scope.update = function() {
-      console.log($scope.users);
+      $scope.users.perfil_id = $scope.users.perfil.id;
       $scope.users.$update({id: $scope.users.id}).then(
         function( data ) {
-          console.log( data );
           $state.go('usersIndex');
         },
         function( error ){
@@ -77,6 +84,13 @@ angular.module('milfaqApp')
         //sucess
         function( data ){
           $scope.users = data;
+          angular.forEach($scope.perfis, function(value, key) {
+            if(data.perfil.id == value.id) {
+              $scope.users.perfil = $scope.perfis[key];
+              return;
+            }
+
+          });
         },
         function( error ){
           console.log ( error );
@@ -84,5 +98,10 @@ angular.module('milfaqApp')
       );
     };
 
+    $scope.load_perfis = function() {
+      $scope.perfis = perfisFactory.index();
+    };
+
+    $scope.load_perfis();
     $scope.load();
 }]);
