@@ -8,3 +8,6 @@
 
 # Perfil
 	Perfil.create([{descricao: "Leitor"}, {descricao: "Relator"}, {descricao: "Administrador"}])
+
+# Status
+	Status.create([{descricao: "Em Aberto"}, {descricao: "Resolvido"}])
