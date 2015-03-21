@@ -2,7 +2,7 @@ class Problema < ActiveRecord::Base
 	belongs_to :usuario
 	belongs_to :status
 
-	has_many :respostas
+	has_many :respostas, dependent: :destroy
 
 	validates :descricao, :presence => {message: "Descrição é obrigatória"}
 	validates :usuario_id, :presence => {message: "Relator é obrigatório"}

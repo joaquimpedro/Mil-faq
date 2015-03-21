@@ -1,5 +1,7 @@
 class Usuario < ActiveRecord::Base
 	belongs_to :perfil
+	has_many :problemas, dependent: :destroy
+	has_many :respostas, dependent: :destroy
 
 	validates :nome, :presence => {message: "Nome é obrigatório"}
 	validates :sobrenome, :presence => {message: "Sobrenome é obrigatório"}
