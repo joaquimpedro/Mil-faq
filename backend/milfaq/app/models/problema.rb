@@ -4,4 +4,8 @@ class Problema < ActiveRecord::Base
 	validates :descricao, :presence => {message: "Descrição é obrigatória"}
 	validates :usuario_id, :presence => {message: "Relator é obrigatório"}
 	validates :status_id, :presence => {message: "Status é obrigatório"}
+
+	def self.pesquisar(titulo)
+    	@problemas = Problema.where("titulo ILIKE ?", "%#{titulo}%")
+  	end
 end
