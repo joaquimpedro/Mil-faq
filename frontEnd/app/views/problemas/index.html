@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="problema in problemas | filter:busca | orderBy:campoOrdenado:ordemType">
+                    <tr ng-repeat="problema in problemas | filter:searchInput | orderBy:campoOrdenado:ordemType">
                         <td>{{problema.id}}</td>
                         <td>{{problema.titulo}}</td>
                         <td>{{problema.status.descricao}}</td>

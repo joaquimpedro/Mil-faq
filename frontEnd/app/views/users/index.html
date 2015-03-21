@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="user in users | filter:busca | orderBy:campoOrdenado:ordemType">
+                    <tr ng-repeat="user in users | filter:searchInput | orderBy:campoOrdenado:ordemType">
                         <td>{{user.id}}</td>
                         <td><i class="glyphicon glyphicon-user"></i> {{user.nome_completo}}</td>
                         <td><i class="glyphicon glyphicon-envelope"></i> {{user.email}}</td>
