@@ -5,8 +5,16 @@
             <div class="form-group">
                 <textarea class="form-control msd-elastic" ng-model="problema.descricao" readonly=""></textarea>
             </div>
+            <div class="form-group" ng-repeat="resposta in problema.respostas">
+                <label>Resposta {{resposta.id}}</label> 
+                <!--div class="pull-right">
+                    <a title="Responder" ng-click=""><i class="glyphicon glyphicon-trash"></i></a>
+                </div -->
+                <textarea class="form-control msd-elastic" ng-model="resposta.descricao"></textarea>
+                <hr>
+            </div>
             <div class="form-group">
-                <label>Resposta</label>
+                <label>Responder</label>
                 <textarea class="form-control msd-elastic" ng-model="problema.resposta"></textarea>
             </div>
             <div class="pull-right">

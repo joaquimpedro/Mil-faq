@@ -59,7 +59,7 @@ angular.module('milfaqApp')
   $scope.index();
 }])
 
-.controller('ProblemasShowController', ['$scope', '$stateParams', 'problemasFactory', function($scope, $stateParams, problemasFactory) {
+.controller('ProblemasShowController', ['$scope', '$stateParams', 'problemasFactory', 'respostasFactory', function($scope, $stateParams, problemasFactory, respostasFactory) {
 
   $scope.problema = {};
   $scope.show = function() {
@@ -74,9 +74,15 @@ angular.module('milfaqApp')
   };
 
   $scope.responder = function() {
-    $scope.problema.$update({id: $scope.problema.id}).then(
-      function( data ) {
-        $state.go('problemasIndex');
+    $scope.resposta = {
+      descricao: $scope.problema.resposta,
+      usuario_id: $scope.problema.usuario_id,
+      problema_id: $scope.problema.id
+    };
+
+    respostasFactory.create($scope.resposta).$promise.then(
+      function( data ){
+        $scope.show();
       },
       function( error ){
         console.log( error );
@@ -92,8 +98,8 @@ angular.module('milfaqApp')
     $scope.problema = {};
 
     $scope.save = function() {
-        $scope.problema.status_id = 1;
-        problemasFactory.create($scope.problema).$promise.then(
+      $scope.problema.status_id = 1;
+      problemasFactory.create($scope.problema).$promise.then(
         function( data ){
           $state.go('problemasIndex');
         },

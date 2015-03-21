@@ -20,6 +20,7 @@ angular
     'usersFactory',
     'perfisFactory',
     'problemasFactory',
+    'respostasFactory',
     'monospaced.elastic',
   ])
 
