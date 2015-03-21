@@ -9,41 +9,47 @@
 angular.module('milfaqApp')
 
 .controller('ProblemasIndexController', ['$scope', 'problemasFactory', function($scope, problemasFactory) {
-    
-    $scope.index = function(){
-      problemasFactory.index().$promise.then(
-        function (data) {
-          $scope.problemas = data;
-          $scope.campoOrdenado = "titulo";
+
+  $scope.problema_to_destroy = {};
+  
+  $scope.index = function(){
+    problemasFactory.index().$promise.then(
+      function (data) {
+        $scope.problemas = data;
+        $scope.campoOrdenado = "titulo";
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
+  };
+
+  $scope.destroy = function(problema) {
+      problemasFactory.destroy({id: problema.id}).$promise.then(
+        function( data ){
+          $scope.index();
         },
-        function (error) {
-          console.log(error);
+        function( error ){
+          console.log( error );
         }
       );
-    };
+  };
 
-    $scope.destroy = function(problema) {
-        problemasFactory.destroy({id: problema.id}).$promise.then(
-          function( data ){
-            $scope.index();
-          },
-          function( error ){
-            console.log( error );
-          }
-        );
-    };
+  $scope.resolvido = function(data) {
+    $scope.problema = data;
+    $scope.problema.status_id = 2;
+    $scope.update();
+  };
 
-    $scope.resolvido = function(data) {
-      $scope.problema = data;
-      $scope.problema.status_id = 2;
-      $scope.update();
-    };
+  $scope.em_aberto = function(data) {
+    $scope.problema = data;
+    $scope.problema.status_id = 1
+    $scope.update();
+  };
 
-    $scope.em_aberto = function(data) {
-      $scope.problema = data;
-      $scope.problema.status_id = 1
-      $scope.update();
-    };
+  $scope.setProblemaToDestroy = function(id) {
+    $scope.problema_to_destroy = id;
+  };
 
   $scope.update = function() {
     $scope.problema.$update({id: $scope.problema.id}).then(

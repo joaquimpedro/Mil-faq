@@ -9,6 +9,7 @@
 angular.module('milfaqApp')
 
 .controller('UsersIndexController', ['$scope', 'usersFactory', function($scope, usersFactory) {
+    $scope.user_to_destroy = {};
     
     $scope.index = function(){
       usersFactory.index().$promise.then(
@@ -32,6 +33,10 @@ angular.module('milfaqApp')
             console.log( error );
           }
         );
+    };
+
+    $scope.setUserToDestroy = function(id) {
+      $scope.user_to_destroy = id;
     };
 
   $scope.index();
