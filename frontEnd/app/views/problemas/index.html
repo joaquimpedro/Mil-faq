@@ -1,0 +1,39 @@
+<fieldset>
+    <legend>Lista de Usuários</legend>
+</fieldset>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Problemas {{problemas.length}}</h4>
+        <a class="btn btn-sm btn-success btn-table" ui-sref="problemasNew">Novo Problema</a>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-md-1"><a href="" ng-click="campoOrdenado = 'id'; ordemType=!ordemType">#</a></th>
+                        <th class="col-md-4"><a href="" ng-click="campoOrdenado = 'titulo'; ordemType=!ordemType">Título</a></th>
+                        <th class="col-md-2"><a href="" ng-click="campoOrdenado = 'status.descricao'; ordemType=!ordemType">Status</a></th>
+                        <th class="col-md-2"><a href="" ng-click="campoOrdenado = 'created_at'; ordemType=!ordemType">Data</a></th>
+                        <th class="col-md-3">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="problema in problemas | filter:busca | orderBy:campoOrdenado:ordemType">
+                        <td>{{problema.id}}</td>
+                        <td>{{problema.titulo}}</td>
+                        <td>{{problema.status.descricao}}</td>
+                        <td>{{problema.created_at | date:'dd-MM-yyyy HH:MM:ss'}}</td>
+                        <td>
+                            <a title="Responder" class="btn btn-sm btn-default" ui-sref="problemasShow({id:problema.id})"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a title="Editar" class="btn btn-sm btn-default" ui-sref="problemasEdit({id:problema.id})"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a title="Resolvido" class="btn btn-sm btn-success" ng-if="problema.status.id === 1" ng-click="resolvido(problema)"><i class="glyphicon glyphicon-ok"></i></a>
+                            <a title="Em Aberto" class="btn btn-sm btn-warning" ng-if="problema.status.id === 2" ng-click="em_aberto(problema)"><i class="glyphicon glyphicon-repeat"></i></a>
+                            <a class="btn btn-sm btn-danger" ng-if="problema.status.id === 1" ng-click="destroy({id:problema.id})"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

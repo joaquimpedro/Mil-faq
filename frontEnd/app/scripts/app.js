@@ -19,6 +19,8 @@ angular
     'ngTouch',
     'usersFactory',
     'perfisFactory',
+    'problemasFactory',
+    'monospaced.elastic',
   ])
 
 .config(function ($stateProvider,$urlRouterProvider) {
@@ -47,6 +49,27 @@ angular
       url:'/users/:id/edit',
       templateUrl: 'views/users/edit.html',
       controller: 'UsersEditController'
+    })
+    // Problemas
+    .state('problemasIndex', {
+      url:'/problemas',
+      templateUrl: 'views/problemas/index.html',
+      controller: 'ProblemasIndexController'
+    })
+    .state('problemasShow', {
+      url: '/problemas/:id/show',
+      templateUrl: 'views/problemas/show.html',
+      controller: 'ProblemasShowController'
+    })
+    .state('problemasNew', {
+      url:'/problemas/new',
+      templateUrl: 'views/problemas/new.html',
+      controller: 'ProblemasNewController'
+    })
+    .state('problemasEdit', {
+      url:'/problemas/:id/edit',
+      templateUrl: 'views/problemas/edit.html',
+      controller: 'ProblemasEditController'
     })
    $urlRouterProvider.otherwise('/');
 });

@@ -1,1 +1,1 @@
-json.extract! @problema, :id, :descricao, :resposta, :status, :relator, :created_at, :updated_at
+json.extract! @problema, :id, :titulo, :descricao, :resposta, :status, :usuario_id, :usuario, :created_at, :updated_at

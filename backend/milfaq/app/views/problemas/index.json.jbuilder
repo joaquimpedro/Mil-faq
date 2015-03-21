@@ -1,4 +1,3 @@
 json.array!(@problemas) do |problema|
-  json.extract! problema, :id, :descricao, :resposta, :status, :relator
-  json.url problema_url(problema, format: :json)
+  json.extract! problema, :id, :titulo, :descricao, :resposta, :status, :usuario, :created_at
 end

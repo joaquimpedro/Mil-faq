@@ -45,6 +45,7 @@
                             </div>
                         </li>
                         <li><a ui-sref="usersIndex">Usuários</a></li>
+                        <li><a ui-sref="problemasIndex">Problemas</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,14 +78,17 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-elastic/elastic.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/controllers/problemas.js"></script>
     <script src="scripts/services/usersFactory.js"></script>
     <script src="scripts/services/perfisFactory.js"></script>
+    <script src="scripts/services/problemasFactory.js"></script>
     <!-- endbuild -->
 </body>
 
