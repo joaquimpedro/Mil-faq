@@ -11,15 +11,15 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Perfil</th>
+                        <th><a href="" ng-click="campoOrdenado = 'id'; ordemType=!revordemTypeerso">#</a></th>
+                        <th><a href="" ng-click="campoOrdenado = 'nome_completo'; ordemType=!ordemType">Nome</a></th>
+                        <th><a href="" ng-click="campoOrdenado = 'email'; ordemType=!ordemType">Email</a></th>
+                        <th><a href="" ng-click="campoOrdenado = 'perfil.descricao'; ordemType=!ordemType">Perfil</a></th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="user in users | filter:busca | orderBy:'id'">
+                    <tr ng-repeat="user in users | filter:busca | orderBy:campoOrdenado:ordemType">
                         <td>{{user.id}}</td>
                         <td><i class="glyphicon glyphicon-user"></i> {{user.nome_completo}}</td>
                         <td><i class="glyphicon glyphicon-envelope"></i> {{user.email}}</td>

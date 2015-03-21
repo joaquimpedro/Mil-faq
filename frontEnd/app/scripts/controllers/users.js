@@ -12,7 +12,7 @@ angular.module('milfaqApp')
     
     $scope.index = function(){
       $scope.users = usersFactory.index();
-      console.log($scope.users);
+      $scope.campoOrdenado = "nome";
     };
 
     $scope.destroy = function(user) {
