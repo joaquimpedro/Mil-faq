@@ -11,18 +11,23 @@ angular.module('milfaqApp')
 .controller('UsersIndexController', ['$scope', 'usersFactory', function($scope, usersFactory) {
     
     $scope.index = function(){
-      $scope.users = usersFactory.index();
-      $scope.campoOrdenado = "nome";
+      usersFactory.index().$promise.then(
+        function (data) {
+          $scope.users = data;
+          $scope.campoOrdenado = "nome";
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
     };
 
     $scope.destroy = function(user) {
         usersFactory.destroy({id: user.id}).$promise.then(
-          //sucess
           function( data ){
             console.log( data );
             $scope.index();
           },
-          //error
           function( error ){
             console.log( error );
           }
@@ -33,7 +38,14 @@ angular.module('milfaqApp')
 }])
 
 .controller('UsersShowController', ['$scope', '$stateParams', 'usersFactory', function($scope, $stateParams, usersFactory) {
-    $scope.user = usersFactory.show({id: $stateParams.id});
+  usersFactory.show({id: $stateParams.id}).$promise.then(
+    function (data) {
+      $scope.user = data;
+    },
+    function (error) {
+      console.log(error); 
+    }
+  );
 }])
 
 .controller('UsersNewController', ['$scope', '$stateParams','$state', 'usersFactory', 'perfisFactory', function($scope, $stateParams, $state ,usersFactory, perfisFactory) {
@@ -41,14 +53,10 @@ angular.module('milfaqApp')
     $scope.users = {};
 
     $scope.save = function() {
-        $scope.users.perfil_id = $scope.users.perfil.id;
         usersFactory.create($scope.users).$promise.then(
-        //sucess
         function( data ){
-          console.log( data );
           $state.go('usersIndex');
         },
-        //error
         function( error ){
           console.log( error );
         }
@@ -56,7 +64,14 @@ angular.module('milfaqApp')
     };
 
     $scope.load_perfis = function() {
-      $scope.perfis = perfisFactory.index();
+      perfisFactory.index().$promise.then(
+        function (data) {
+          $scope.perfis = data;
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
     };
 
     $scope.load_perfis();
@@ -68,7 +83,6 @@ angular.module('milfaqApp')
     $scope.users = {};
 
     $scope.update = function() {
-      $scope.users.perfil_id = $scope.users.perfil.id;
       $scope.users.$update({id: $scope.users.id}).then(
         function( data ) {
           $state.go('usersIndex');
@@ -84,13 +98,6 @@ angular.module('milfaqApp')
         //sucess
         function( data ){
           $scope.users = data;
-          angular.forEach($scope.perfis, function(value, key) {
-            if(data.perfil.id == value.id) {
-              $scope.users.perfil = $scope.perfis[key];
-              return;
-            }
-
-          });
         },
         function( error ){
           console.log ( error );
@@ -99,7 +106,14 @@ angular.module('milfaqApp')
     };
 
     $scope.load_perfis = function() {
-      $scope.perfis = perfisFactory.index();
+      perfisFactory.index().$promise.then(
+        function (data) {
+          $scope.perfis = data;
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
     };
 
     $scope.load_perfis();
