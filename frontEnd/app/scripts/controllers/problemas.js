@@ -8,7 +8,7 @@
  */
 angular.module('milfaqApp')
 
-.controller('ProblemasIndexController', ['$scope', 'problemasFactory', function($scope, problemasFactory) {
+.controller('ProblemasIndexController', ['$scope', '$state', 'problemasFactory', function($scope, $state, problemasFactory) {
 
   $scope.problema_to_destroy = {};
   
@@ -16,7 +16,7 @@ angular.module('milfaqApp')
     problemasFactory.index().$promise.then(
       function (data) {
         $scope.problemas = data;
-        $scope.campoOrdenado = "titulo";
+        $scope.campoOrdenado = 'titulo';
       },
       function (error) {
         $scope.error_message = error.data.errors[0];
@@ -38,12 +38,18 @@ angular.module('milfaqApp')
   $scope.resolvido = function(data) {
     $scope.problema = data;
     $scope.problema.status_id = 2;
-    $scope.update();
+    $scope.verifica_se_possui_resposta($scope.problema.id, function(possui_resposta) {
+      if(possui_resposta) {
+        $scope.update();
+      } else {
+        $scope.error_message = 'Nao e possivel marcar como resolvida - E necessaria alguma resposta!';
+      }
+    });
   };
 
   $scope.em_aberto = function(data) {
     $scope.problema = data;
-    $scope.problema.status_id = 1
+    $scope.problema.status_id = 1;
     $scope.update();
   };
 
@@ -58,6 +64,17 @@ angular.module('milfaqApp')
       },
       function( error ){
         $scope.error_message = error.data;
+      }
+    );
+  };
+
+  $scope.verifica_se_possui_resposta = function(id, callback) {
+   return  problemasFactory.show({id: id}).$promise.then(
+      function (data) {
+        callback(data.respostas.length === 0 ? false : true);
+      },
+      function (error) {
+        $scope.error_message = error.data.errors[0];
       }
     );
   };
@@ -118,7 +135,7 @@ angular.module('milfaqApp')
     $scope.load_usuarios = function () {
       usersFactory.index().$promise.then(
         function (data) {
-          $scope.usuarios = data
+          $scope.usuarios = data;
           $scope.problema.usuario_id = data[0].id;
         },
         function (error) {
@@ -159,7 +176,7 @@ angular.module('milfaqApp')
     $scope.load_usuarios = function () {
       usersFactory.index().$promise.then(
         function (data) {
-          $scope.usuarios = data
+          $scope.usuarios = data;
         },
         function (error) {
           $scope.error_message = error.data.errors[0];

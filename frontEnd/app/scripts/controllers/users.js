@@ -15,7 +15,7 @@ angular.module('milfaqApp')
       usersFactory.index().$promise.then(
         function (data) {
           $scope.users = data;
-          $scope.campoOrdenado = "nome";
+          $scope.campoOrdenado = 'nome';
         },
         function (error) {
           $scope.error_message = error.data.errors[0];
