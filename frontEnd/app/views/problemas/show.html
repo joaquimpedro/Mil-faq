@@ -2,6 +2,11 @@
     <fieldset>
         <legend>{{problema.titulo}}</legend>
     </fieldset>
+    <div ng-hide="error_message === undefined" class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{error_message}}
+    </div>
     <div class="form-group">
         <textarea class="form-control msd-elastic" ng-model="problema.descricao" readonly=""></textarea>
     </div>

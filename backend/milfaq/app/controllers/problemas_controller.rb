@@ -1,4 +1,5 @@
 class ProblemasController < ApplicationController
+  before_action :authenticate_usuario!
   before_action :set_problema, only: [:show, :edit, :update, :destroy]
 
   # GET /problemas

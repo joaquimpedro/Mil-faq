@@ -22,14 +22,24 @@ angular
     'problemasFactory',
     'respostasFactory',
     'monospaced.elastic',
+    'ng-token-auth',
   ])
 
-.config(function ($stateProvider,$urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
    $stateProvider
     .state('/', {
-      url:'/',
-      templateUrl: 'views/main.html',
+      url:'/login',
+      templateUrl: 'views/login.html',
       controller: 'MainCtrl'
+    })
+    .state('index', {
+      url:'/index',
+      template: '<ui-view="main"/>',
+      resolve: {
+        auth: function ($auth) {
+          return $auth.validateUser();
+        }
+      }
     })
     .state('usersIndex', {
       url:'/users',
@@ -72,5 +82,10 @@ angular
       templateUrl: 'views/problemas/edit.html',
       controller: 'ProblemasEditController'
     })
-   $urlRouterProvider.otherwise('/');
+   $urlRouterProvider.otherwise('/login');
+
+
+    $authProvider.configure({
+      apiUrl: 'http://0.0.0.0:3000/api'
+    });
 });

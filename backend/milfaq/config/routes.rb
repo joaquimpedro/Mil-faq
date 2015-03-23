@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #mount_devise_token_auth_for 'Usuario', at: 'auth'
 
   resources :usuarios
 
@@ -7,6 +8,11 @@ Rails.application.routes.draw do
   resources :perfis
 
   resources :respostas
+
+  scope '/api' do
+    mount_devise_token_auth_for 'Usuario', at: '/auth'
+    resources :groups, except: [:new, :edit]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

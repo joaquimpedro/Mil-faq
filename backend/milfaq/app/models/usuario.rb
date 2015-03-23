@@ -1,12 +1,12 @@
 class Usuario < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+  include DeviseTokenAuth::Concerns::User
 	belongs_to :perfil
 	has_many :problemas, dependent: :destroy
 	has_many :respostas, dependent: :destroy
-
-	validates :nome, :presence => {message: "Nome é obrigatório"}
-	validates :sobrenome, :presence => {message: "Sobrenome é obrigatório"}
-	validates :email, :presence => {message: "E-mail é obrigatório"}, :uniqueness => {message: "E-mail já registrado", case_sensitive: false}
-	validates :perfil_id, :presence => {message: "Perfil é obrigatório"}
 
 	def nome_completo
 		self.nome + " " + self.sobrenome 

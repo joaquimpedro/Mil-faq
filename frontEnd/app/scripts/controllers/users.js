@@ -18,7 +18,7 @@ angular.module('milfaqApp')
           $scope.campoOrdenado = "nome";
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -30,7 +30,7 @@ angular.module('milfaqApp')
             $scope.index();
           },
           function( error ){
-            console.log( error );
+            $scope.error_message = error.data.errors[0];
           }
         );
     };
@@ -48,12 +48,12 @@ angular.module('milfaqApp')
       $scope.user = data;
     },
     function (error) {
-      console.log(error); 
+      $scope.error_message = error.data.errors[0]; 
     }
   );
 }])
 
-.controller('UsersNewController', ['$scope', '$stateParams','$state', 'usersFactory', 'perfisFactory', function($scope, $stateParams, $state ,usersFactory, perfisFactory) {
+.controller('UsersNewController', ['$scope', '$stateParams', '$state', '$auth', 'usersFactory', 'perfisFactory', function($scope, $stateParams, $state, $auth, usersFactory, perfisFactory) {
     
     $scope.users = {};
 
@@ -63,7 +63,7 @@ angular.module('milfaqApp')
           $state.go('usersIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -74,9 +74,19 @@ angular.module('milfaqApp')
           $scope.perfis = data;
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
+    };
+
+    $scope.login = function () {
+      $auth.submitRegistration($scope.users)
+      .then(function(resp) { 
+        console.log(resp);
+      })
+      .catch(function(resp) { 
+        console.log(resp);
+      });
     };
 
     $scope.load_perfis();
@@ -93,7 +103,7 @@ angular.module('milfaqApp')
           $state.go('usersIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -105,7 +115,7 @@ angular.module('milfaqApp')
           $scope.users = data;
         },
         function( error ){
-          console.log ( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -116,7 +126,7 @@ angular.module('milfaqApp')
           $scope.perfis = data;
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
