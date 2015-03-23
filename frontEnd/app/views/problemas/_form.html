@@ -24,8 +24,8 @@
         </div>
         <div class="form-group">
             <label for="Usuario" class="col-sm-2 control-label">Usuário relator:</label>
-            <div class="col-sm-10"> 
-                <select class="form-control" ng-init="problema.usuario_id = usuarios[0].id" ng-model="problema.usuario_id" ng-options="user.id as user.nome_completo for user in usuarios"></select>
+            <div class="col-sm-5"> 
+                <select class="form-control" ng-model="problema.usuario_id" ng-options="user.id as user.nome_completo for user in usuarios"></select>
             </div>
         </div>
         <div class="pull-right">

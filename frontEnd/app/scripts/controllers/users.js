@@ -72,6 +72,7 @@ angular.module('milfaqApp')
       perfisFactory.index().$promise.then(
         function (data) {
           $scope.perfis = data;
+          $scope.users.perfil_id = data[0].id;
         },
         function (error) {
           $scope.error_message = error.data.errors[0];

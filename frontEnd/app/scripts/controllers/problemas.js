@@ -119,6 +119,7 @@ angular.module('milfaqApp')
       usersFactory.index().$promise.then(
         function (data) {
           $scope.usuarios = data
+          $scope.problema.usuario_id = data[0].id;
         },
         function (error) {
           $scope.error_message = error.data.errors[0];
