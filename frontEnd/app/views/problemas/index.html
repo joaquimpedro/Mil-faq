@@ -1,6 +1,11 @@
 <fieldset>
     <legend>Lista de Usuários</legend>
 </fieldset>
+<div class="alert alert-danger" role="alert" ng-hide="error_message === undefined">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error_message}}
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>Problemas {{problemas.length}}</h4>

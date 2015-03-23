@@ -18,7 +18,7 @@ angular.module('milfaqApp')
           $scope.campoOrdenado = "nome";
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -30,7 +30,7 @@ angular.module('milfaqApp')
             $scope.index();
           },
           function( error ){
-            console.log( error );
+            $scope.error_message = error.data.errors[0];
           }
         );
     };
@@ -48,7 +48,7 @@ angular.module('milfaqApp')
       $scope.user = data;
     },
     function (error) {
-      console.log(error); 
+      $scope.error_message = error.data.errors[0];
     }
   );
 }])
@@ -63,7 +63,7 @@ angular.module('milfaqApp')
           $state.go('usersIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data;
         }
       );
     };
@@ -74,7 +74,7 @@ angular.module('milfaqApp')
           $scope.perfis = data;
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -93,7 +93,7 @@ angular.module('milfaqApp')
           $state.go('usersIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data;
         }
       );
     };
@@ -105,7 +105,7 @@ angular.module('milfaqApp')
           $scope.users = data;
         },
         function( error ){
-          console.log ( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -116,7 +116,7 @@ angular.module('milfaqApp')
           $scope.perfis = data;
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
