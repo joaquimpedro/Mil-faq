@@ -19,7 +19,7 @@ angular.module('milfaqApp')
         $scope.campoOrdenado = "titulo";
       },
       function (error) {
-        console.log(error);
+        $scope.error_message = error.data.errors[0];
       }
     );
   };
@@ -30,7 +30,7 @@ angular.module('milfaqApp')
           $scope.index();
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
   };
@@ -57,7 +57,7 @@ angular.module('milfaqApp')
         $state.go('problemasIndex');
       },
       function( error ){
-        console.log( error );
+        $scope.error_message = error.data;
       }
     );
   };
@@ -74,7 +74,7 @@ angular.module('milfaqApp')
         $scope.problema = data;
       },
       function (error) {
-        console.log(error); 
+        $scope.error_message = error.data.errors[0];
       }
     );
   };
@@ -91,7 +91,7 @@ angular.module('milfaqApp')
         $scope.show();
       },
       function( error ){
-        console.log( error );
+        $scope.error_message = error.data;
       }
     );
   };
@@ -110,7 +110,7 @@ angular.module('milfaqApp')
           $state.go('problemasIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data;
         }
       );
     };
@@ -121,7 +121,7 @@ angular.module('milfaqApp')
           $scope.usuarios = data
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -139,7 +139,7 @@ angular.module('milfaqApp')
           $state.go('problemasIndex');
         },
         function( error ){
-          console.log( error );
+          $scope.error_message = error.data;
         }
       );
     };
@@ -150,7 +150,7 @@ angular.module('milfaqApp')
           $scope.problema = data;
         },
         function( error ){
-          console.log ( error );
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
@@ -161,7 +161,7 @@ angular.module('milfaqApp')
           $scope.usuarios = data
         },
         function (error) {
-          console.log(error);
+          $scope.error_message = error.data.errors[0];
         }
       );
     };
